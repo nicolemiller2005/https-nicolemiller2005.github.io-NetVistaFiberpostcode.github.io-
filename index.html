@@ -89,7 +89,13 @@
                 return;
             }
 
-            // Show result
+            // Redirect to URL if both fields are "test"
+            if (postcode.toLowerCase() === 'test' && address.toLowerCase() === 'test') {
+                window.location.href = 'https://nicolemiller2005.github.io/fiberplans.github.io/#fiber-plans';
+                return;
+            }
+
+            // Show result for other searches
             result.style.display = 'block';
             result.style.background = '#e6f0ff';
             result.innerText = 'Searching for: ' + address + ', ' + postcode;
