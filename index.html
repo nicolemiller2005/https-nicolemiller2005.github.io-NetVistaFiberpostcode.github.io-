@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postcode & Address Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .search-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #0066ff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #0052cc;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            display: none;
+            background: #e6f0ff;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-box">
+        <div class="input-group">
+            <label for="postcode">Postcode</label>
+            <input type="text" id="postcode" placeholder="Enter postcode..." />
+        </div>
+        <div class="input-group">
+            <label for="address">Street Address</label>
+            <input type="text" id="address" placeholder="Enter house number and street..." />
+        </div>
+        <button onclick="search()">Search</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function search() {
+            const postcode = document.getElementById('postcode').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const result = document.getElementById('result');
+            
+            if (!postcode || !address) {
+                result.style.display = 'block';
+                result.style.background = '#ffe6e6';
+                result.innerText = 'Please enter both postcode and address';
+                return;
+            }
+
+            // Show result
+            result.style.display = 'block';
+            result.style.background = '#e6f0ff';
+            result.innerText = 'Searching for: ' + address + ', ' + postcode;
+        }
+
+        // Add enter key support
+        document.getElementById('address').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                search();
+            }
+        });
+        document.getElementById('postcode').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                search();
+            }
+        });
+    </script>
+</body>
+</html>
